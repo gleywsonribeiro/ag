@@ -25,8 +25,8 @@ public class Populacao {
 
     public Populacao(int tamanho, int comprimentoCromossomo) {
         this.tamanhoDaPopulacao = tamanho;
-        individuos = new ArrayList<Cromossomo>(tamanho);
-        temp = new ArrayList<Cromossomo>(tamanho);
+        individuos = new ArrayList<>(tamanho);
+        temp = new ArrayList<>(tamanho);
         initPopulacao(comprimentoCromossomo);
     }
 
@@ -65,7 +65,7 @@ public class Populacao {
         }
     }
 
-        public void geracao(float taxaDeCruzamento, float taxaDeMutacao) {
+    public void geracao(float taxaDeCruzamento, float taxaDeMutacao) {
         Random random = new Random();
         double chances = random.nextFloat();
 
@@ -79,7 +79,7 @@ public class Populacao {
         while (temp.size() < tamanhoDaPopulacao) {
             Casal casal = casamento();
             if (chances < taxaDeCruzamento) {
-                Cromossomo[] novosIndividuos = casal.cruzar(taxaDeMutacao);
+                Cromossomo[] novosIndividuos = casal.cruza(taxaDeMutacao);
                 temp.addAll(Arrays.asList(novosIndividuos));
 
             } else {

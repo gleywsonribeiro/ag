@@ -45,7 +45,7 @@ public class Casal {
         this.tipoCrossover = tipoCrossover;
     }
 
-    public Cromossomo[] cruzar(float taxaDeMutacao) {
+    public Cromossomo[] cruza(float taxaDeMutacao) {
         return pai.crossover(mae, taxaDeMutacao, tipoCrossover);
     }
 

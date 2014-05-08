@@ -7,6 +7,8 @@ package modelo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,58 +23,79 @@ public class AlgoritmoGenetico {
     private int tamanhoCromossomo;
     private int numeroGeracoes;
     
+    private Populacao populacao;
+    private List melhores;
+    private List piores;
     
     
+//    public void run() {
+//        File arquivo = new File("saidaFunctionBin.m");
+//        FileWriter fw;
+//        try {
+//            fw = new FileWriter(arquivo);
+//            System.out.println("Iniciando Algoritmo... ");
+//            
+//            populacao = new Populacao(tamanhoPopulacao, tamanhoCromossomo);
+//            populacao.setTipoCrossover(this.tipoCrossover);
+//            populacao.setSelecao(selecao);
+//            populacao.geracao(taxaDeCruzamento, taxaDeMutacao);
+//            
+//            
+//            fw.write("%Geracao inicial\n");
+//            String melhores = "melhores = [";
+//            String piores = "piores = [";
+//            fw.write(populacao.saida(0) + "\n");
+//            for (int i = 1; i <= numeroGeracoes; i++) {
+//                populacao.geracao(taxaDeCruzamento, taxaDeMutacao);
+//                melhores += populacao.getMelhorIndividuo()+",";
+//                piores += populacao.getPiorIndividuo()+",";
+//                fw.write("%geracao " + i + "\n");
+//                
+//                fw.write(populacao.saida(i) + "\n");
+//                fw.write("title('Geracao: " + i + "');\n"); 
+//
+//            }
+//            StringBuilder sb1 = new StringBuilder(melhores);
+//            StringBuilder sb2 = new StringBuilder(piores);
+//            melhores = sb1.deleteCharAt(melhores.length()-1).toString();
+//            piores = sb2.deleteCharAt(piores.length()-1).toString();
+//            
+//            melhores += "];\n";
+//            piores += "];\n";
+//            
+//            
+//            fw.write(melhores);
+//            fw.write(piores);
+//            fw.write("pause();\n");
+//            fw.write("plot(melhores);\n");
+//            fw.write("hold on;\n");
+//            fw.write("pause();\n");
+//            fw.write("plot(piores);\n");
+//            System.out.println("FIM!");
+//            fw.close();
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
     
     public void run() {
-        File arquivo = new File("saidaFunctionBin.m");
-        FileWriter fw;
-        try {
-            fw = new FileWriter(arquivo);
+       
             System.out.println("Iniciando Algoritmo... ");
             
-            Populacao populacao = new Populacao(tamanhoPopulacao, tamanhoCromossomo);
+            populacao = new Populacao(tamanhoPopulacao, tamanhoCromossomo);
             populacao.setTipoCrossover(this.tipoCrossover);
             populacao.setSelecao(selecao);
             populacao.geracao(taxaDeCruzamento, taxaDeMutacao);
+
+            melhores = new ArrayList();
+            piores = new ArrayList();
             
-            
-            fw.write("%Geracao inicial\n");
-            String melhores = "melhores = [";
-            String piores = "piores = [";
-            fw.write(populacao.saida(0) + "\n");
             for (int i = 1; i <= numeroGeracoes; i++) {
                 populacao.geracao(taxaDeCruzamento, taxaDeMutacao);
-                melhores += populacao.getMelhorIndividuo()+",";
-                piores += populacao.getPiorIndividuo()+",";
-                fw.write("%geracao " + i + "\n");
-                
-                fw.write(populacao.saida(i) + "\n");
-                fw.write("title('Geracao: " + i + "');\n"); 
-
+                melhores.add(populacao.getMelhorIndividuo());
+                piores.add(populacao.getPiorIndividuo());
             }
-            StringBuilder sb1 = new StringBuilder(melhores);
-            StringBuilder sb2 = new StringBuilder(piores);
-            melhores = sb1.deleteCharAt(melhores.length()-1).toString();
-            piores = sb2.deleteCharAt(piores.length()-1).toString();
-            
-            melhores += "];\n";
-            piores += "];\n";
-            
-            
-            fw.write(melhores);
-            fw.write(piores);
-            fw.write("pause();\n");
-            fw.write("plot(melhores);\n");
-            fw.write("hold on;\n");
-            fw.write("pause();\n");
-            fw.write("plot(piores);\n");
-            System.out.println("FIM!");
-            fw.close();
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public int getNumeroGeracoes() {
@@ -134,6 +157,20 @@ public class AlgoritmoGenetico {
     public void setTamanhoCromossomo(int tamanhoCromossomo) {
         this.tamanhoCromossomo = tamanhoCromossomo;
     }
+
+    public Populacao getPopulacao() {
+        return populacao;
+    }
+
+    public List getMelhores() {
+        return melhores;
+    }
+
+    public List getPiores() {
+        return piores;
+    }
+    
+    
     
     
 }
