@@ -11,12 +11,19 @@
     <h:body>
         <p:layout fullPage="true">
 
-            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                Header
+            <p:layoutUnit position="north" size="150" resizable="true" closable="true" collapsible="true">
+                <p:panel header="Minimização de função">
+                    <h:outputText value="Algoritmo genético para minimização da função: " />
+                    <br/>
+                    <h1>
+                        x&sup2; + y&sup2; 
+                    </h1>
+
+                </p:panel>
             </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                Footer
+            <p:layoutUnit position="south" size="20" closable="true" collapsible="true">
+                Gleywson Ribeiro - Analista de Sistemas
             </p:layoutUnit>
 
             <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
@@ -56,16 +63,12 @@
                     </h:panelGrid>
 
                     <p:panel style="alignment-adjust: central">
-                        <p:dataList value="#{agController.ag.populacao.individuos}" var="item">
-                            #{item.x}
-                        </p:dataList>
+                        <p:lineChart value="#{grafico.modeloGrafico}" legendPosition="s" title="Indicadores" style="width: 800px; height: 300px"/>
                     </p:panel>
                 </h:form>
+                
             </p:layoutUnit>
-
         </p:layout>
-
-
     </h:body>
 </html>
 

@@ -24,7 +24,7 @@ import modelo.TipoCrossover;
 @RequestScoped
 public class AgController {
     private AlgoritmoGenetico ag;
-    
+    private Map valores;
     private List<TipoCrossover> crossovers;
     private List<Selecao> selecoes;
     
@@ -40,6 +40,11 @@ public class AgController {
         selecoes = new ArrayList<>();
         selecoes.add(Selecao.ROLETA);
         selecoes.add(Selecao.TORNEIO);
+        
+        valores = new HashMap();
+        
+        valores.put("p1", 1);
+        valores.put("p2", 2);
     }
 
     public AlgoritmoGenetico getAg() {
@@ -64,6 +69,14 @@ public class AgController {
 
     public void setSelecoes(List<Selecao> selecoes) {
         this.selecoes = selecoes;
+    }
+
+    public Map getValores() {
+        return valores;
+    }
+
+    public void setValores(Map valores) {
+        this.valores = valores;
     }
 
 
