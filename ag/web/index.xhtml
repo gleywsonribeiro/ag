@@ -26,47 +26,49 @@
                 Gleywson Ribeiro - Analista de Sistemas
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+            <p:layoutUnit position="west" size="600" header="Parâmetros" collapsible="true">
+                <p:panel>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            Tamanho do Cromossomo:
+                            <p:inputText value="#{agController.ag.tamanhoCromossomo}"/>
 
+                            Tamanho da população:
+                            <p:inputText value="#{agController.ag.tamanhoPopulacao}"/>
+
+                            Número de gerações:
+                            <p:inputText value="#{agController.ag.numeroGeracoes}"/>
+
+                            Taxa de Cruzamento:
+                            <p:spinner value="#{agController.ag.taxaDeCruzamento}" stepFactor="0.05" min="0" max="1"/>
+
+                            Taxa de mutação:
+                            <p:spinner value="#{agController.ag.taxaDeMutacao}" stepFactor="0.01" max="1" min="0"/>
+
+                            Crossover:
+                            <p:selectOneMenu value="#{agController.ag.tipoCrossover}" converter="crossoverConverter">
+                                <f:selectItems value="#{agController.crossovers}"/>
+                            </p:selectOneMenu>
+
+                            Seleção:
+                            <p:selectOneMenu value="#{agController.ag.selecao}">
+                                <f:selectItems value="#{agController.selecoes}"/>
+                            </p:selectOneMenu>
+
+                            <p:commandButton action="#{agController.ag.run()}" value="Executar" ajax="false"/>
+
+                        </h:panelGrid>
+
+
+                    </h:form>
+                </p:panel>
             </p:layoutUnit>
 
-            <p:layoutUnit position="center">
-                <h:form>
-                    <h:panelGrid columns="2">
-                        Tamanho do Cromossomo:
-                        <p:inputText value="#{agController.ag.tamanhoCromossomo}"/>
 
-                        Tamanho da população:
-                        <p:inputText value="#{agController.ag.tamanhoPopulacao}"/>
-
-                        Número de gerações:
-                        <p:inputText value="#{agController.ag.numeroGeracoes}"/>
-
-                        Taxa de Cruzamento:
-                        <p:spinner value="#{agController.ag.taxaDeCruzamento}" stepFactor="0.05" min="0" max="1"/>
-
-                        Taxa de mutação:
-                        <p:spinner value="#{agController.ag.taxaDeMutacao}" stepFactor="0.01" max="1" min="0"/>
-
-                        Crossover:
-                        <p:selectOneMenu value="#{agController.ag.tipoCrossover}" converter="crossoverConverter">
-                            <f:selectItems value="#{agController.crossovers}"/>
-                        </p:selectOneMenu>
-
-                        Seleção:
-                        <p:selectOneMenu value="#{agController.ag.selecao}">
-                            <f:selectItems value="#{agController.selecoes}"/>
-                        </p:selectOneMenu>
-
-                        <p:commandButton action="#{agController.ag.run()}" value="Executar" ajax="false"/>
-
-                    </h:panelGrid>
-
-                    <p:panel style="alignment-adjust: central">
-                        <p:lineChart value="#{grafico.modeloGrafico}" legendPosition="s" title="Indicadores" style="width: 800px; height: 300px"/>
-                    </p:panel>
-                </h:form>
-                
+            <p:layoutUnit position="center" header="gráfico">
+                <p:panel style="alignment-adjust: central">
+                    <p:lineChart value="#{grafico.modeloGrafico}" legendPosition="s" title="Indicadores" style="width: 800px; height: 300px"/>
+                </p:panel>
             </p:layoutUnit>
         </p:layout>
     </h:body>
