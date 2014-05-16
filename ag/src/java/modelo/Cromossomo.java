@@ -5,7 +5,9 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -234,6 +236,15 @@ public class Cromossomo {
             saida += gene;
         }
 
+        return saida;
+//        List saida = new ArrayList();
+//        saida.addAll(Arrays.asList(genes));
+        
+    }
+    
+    List asList() {
+        List saida = new ArrayList();
+        saida.addAll(Arrays.asList(genes));
         return saida;
     }
 

@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>I.C.</title>
         <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
     <h:body>
@@ -30,14 +30,18 @@
                 <p:panel>
                     <h:form>
                         <h:panelGrid columns="2">
-                            Tamanho do Cromossomo:
-                            <p:inputText value="#{agController.ag.tamanhoCromossomo}"/>
-
                             Tamanho da população:
                             <p:inputText value="#{agController.ag.tamanhoPopulacao}"/>
 
                             Número de gerações:
                             <p:inputText value="#{agController.ag.numeroGeracoes}"/>
+                            
+                            Tamanho do Cromossomo:
+                            <h:panelGroup>
+                                <p:inputText id="tmc" value="#{agController.ag.tamanhoCromossomo}"/>
+                                <p:slider for="tmc" step="2" minValue="2" maxValue="62"/>
+                            </h:panelGroup>
+
 
                             Taxa de Cruzamento:
                             <p:spinner value="#{agController.ag.taxaDeCruzamento}" stepFactor="0.05" min="0" max="1"/>
