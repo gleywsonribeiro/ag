@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package modelo;
 
 import org.junit.After;
@@ -18,22 +17,22 @@ import static org.junit.Assert.*;
  * @author gleywson
  */
 public class CasalTest {
-    
+
     public CasalTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,12 +43,12 @@ public class CasalTest {
     @Test
     public void testGetPai() {
         System.out.println("getPai");
-        
+
         int tamanho = 10;
         Cromossomo pai = new Cromossomo(tamanho);
         Cromossomo mae = new Cromossomo(tamanho);
         Casal instance = new Casal(pai, mae, TipoCrossover.UM_PONTO);
-        
+
         Cromossomo result = instance.getPai();
         assertEquals(pai, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -66,10 +65,10 @@ public class CasalTest {
         Cromossomo pai = new Cromossomo(tamanho);
         Cromossomo mae = new Cromossomo(tamanho);
         Casal instance = new Casal(pai, mae, TipoCrossover.UM_PONTO);
-        
+
         Cromossomo novoPai = new Cromossomo(tamanho);
         instance.setPai(novoPai);
-        
+
         assertEquals(novoPai, instance.getPai());
     }
 
@@ -83,7 +82,7 @@ public class CasalTest {
         Cromossomo pai = new Cromossomo(tamanho);
         Cromossomo mae = new Cromossomo(tamanho);
         Casal instance = new Casal(pai, mae, TipoCrossover.UM_PONTO);
-        
+
         Cromossomo result = instance.getMae();
         assertEquals(mae, result);
     }
@@ -98,10 +97,10 @@ public class CasalTest {
         Cromossomo pai = new Cromossomo(tamanho);
         Cromossomo mae = new Cromossomo(tamanho);
         Casal instance = new Casal(pai, mae, TipoCrossover.UM_PONTO);
-        
+
         Cromossomo novaMae = new Cromossomo(tamanho);
         instance.setMae(novaMae);
-        
+
         assertEquals(novaMae, instance.getMae());
     }
 
@@ -112,8 +111,7 @@ public class CasalTest {
     public void testGetTipoCrossover() {
         System.out.println("getTipoCrossover");
         Casal instance = new Casal(new Cromossomo(10), new Cromossomo(10), TipoCrossover.UM_PONTO);
-        
-        
+
         assertEquals(TipoCrossover.UM_PONTO, instance.getTipoCrossover());
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -126,13 +124,13 @@ public class CasalTest {
     public void testSetTipoCrossover() {
         System.out.println("setTipoCrossover");
         Casal instance = new Casal(new Cromossomo(10), new Cromossomo(10), TipoCrossover.UM_PONTO);
-        
+
         TipoCrossover tc = TipoCrossover.UNIFORME;
-        
+
         instance.setTipoCrossover(tc);
-        
+
         assertEquals(tc, instance.getTipoCrossover());
-        
+
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -147,14 +145,20 @@ public class CasalTest {
         int tamanho = 10;
         Cromossomo pai = new Cromossomo(tamanho);
         Cromossomo mae = new Cromossomo(tamanho);
-        
+
         Casal instance = new Casal(pai, mae, TipoCrossover.UM_PONTO);
-        
-        Cromossomo[] expResult = null;
+
+        //Cromossomo[] expResult = null;
         Cromossomo[] result = instance.cruza(taxaDeMutacao);
-        assertArrayEquals(expResult, result);
+
+        //assertArrayEquals(instance.getConjuges(), result);
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[i].getX().length; j++) {
+                assertEquals(result[i].getX()[j] >= instance.getConjuges()[i].getLimiteInferior() && result[i].getX()[j] <= instance.getConjuges()[i].getLimiteSuperior(), true);
+            }
+        }
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -163,20 +167,19 @@ public class CasalTest {
     @Test
     public void testGetConjuges() {
         System.out.println("getConjuges");
-        
+
         int tamanho = 10;
-        
+
         Cromossomo[] cromossomos = new Cromossomo[2];
-        
+
         cromossomos[0] = new Cromossomo(tamanho);
         cromossomos[1] = new Cromossomo(tamanho);
-        
-        
+
         Casal instance = new Casal(cromossomos[0], cromossomos[1], TipoCrossover.UM_PONTO);
-        
+
         assertArrayEquals(cromossomos, instance.getConjuges());
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
 }

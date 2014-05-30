@@ -19,8 +19,13 @@ public class Cromossomo {
     private float x[];
     private Gene[] genes;
     private boolean mutante;
+    
+    private float limiteInferior;
+    private float limiteSuperior;
 
     public Cromossomo(int tamanho) {
+        limiteInferior = -2.048f;
+        limiteSuperior = 2.048f;
         this.genes = new Gene[tamanho];
         this.mutante = false;
         this.x = new float[2];
@@ -56,8 +61,8 @@ public class Cromossomo {
     }
 
     private float toReal(int valor, int k) {
-        float min = -2.048f;
-        float max = 2.048f;
+        float min = this.limiteInferior;
+        float max = this.limiteSuperior;
 
         double xReal = min + ((valor * (max - min)) / (Math.pow(2, k) - 1));
         return (float) xReal;
@@ -75,6 +80,24 @@ public class Cromossomo {
         }
     }
 
+    public float getLimiteInferior() {
+        return limiteInferior;
+    }
+
+    public void setLimiteInferior(float LimiteInferior) {
+        this.limiteInferior = LimiteInferior;
+    }
+
+    public float getLimiteSuperior() {
+        return limiteSuperior;
+    }
+
+    public void setLimiteSuperior(float limiteSuperior) {
+        this.limiteSuperior = limiteSuperior;
+    }
+
+    
+    
     public float[] getX() {
         return x;
     }
