@@ -181,8 +181,7 @@ public class Populacao {
         while (it2.hasNext()) {
             Cromossomo individuo = it2.next();
             roleta.add(new Object[]{
-                new Double(acumulado),
-                new Double(acumulado + individuo.getFitComplement(somatorioFitness) / somatorioFitComplement),
+                acumulado, acumulado + individuo.getFitComplement(somatorioFitness) / somatorioFitComplement,
                 individuo
             });
 
